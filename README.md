@@ -31,7 +31,7 @@ other-account   : AAAAAAAAAAAA | BBBBBBBBBBBBBBBB
 ...
 ```
 
-You can choose account by cursor key or j(up)/k(down) key.
+You can choose account by cursor key or j(down)/k(up) key.
 
 # License
 
