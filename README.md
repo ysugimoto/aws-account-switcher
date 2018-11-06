@@ -11,6 +11,8 @@ $ go get github.com/ysugimoto/aws-acccount-switcher/...
 ```
 
 Then you can get `aws-account-switcher` command. We recommend to rename as `acs`.
+
+
 Or, download prebuilt binary from [Release](https://github.com/ysugimoto/aws-account-switcher/releases) page.
 
 Then you can get `acs` command.
