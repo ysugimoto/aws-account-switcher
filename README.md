@@ -10,7 +10,7 @@ Install via go runtime
 $ go get github.com/ysugimoto/aws-acccount-switcher/...
 ```
 
-Or, download prebuilt binary from Release page.
+Or, download prebuilt binary from [Release](https://github.com/ysugimoto/aws-account-switcher/releases) page.
 
 After that, you can use `acs` command.
 
