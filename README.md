@@ -10,13 +10,14 @@ Install via go runtime
 $ go get github.com/ysugimoto/aws-acccount-switcher/...
 ```
 
+Then you can get `aws-account-switcher` command. We recommend to rename as `acs`.
 Or, download prebuilt binary from [Release](https://github.com/ysugimoto/aws-account-switcher/releases) page.
 
-After that, you can use `acs` command.
+Then you can get `acs` command.
 
 # Usage
 
-`acs` accepts profile name of first argument, if supply it, loads and parse `~/.aws/credentials` file and export as environment variable, so you can export it by using `source` command on osx/linux:
+`acs` accepts profile name as first argument, if supply it, loads and parse `~/.aws/credentials` file and export as environment variable, so you can export it by using `source` command on osx/linux:
 
 ```
 $ acs [profile name] | source -
