@@ -5,6 +5,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 
 	"github.com/go-ini/ini"
@@ -100,6 +101,7 @@ func selectFromCredentailList(creds map[string]credential, max int) string {
 	for _, c := range creds {
 		list = append(list, c.format(max+1))
 	}
+	sort.Strings(list)
 	retChan := make(chan string, 1)
 	terminate := make(chan struct{})
 	go cho.Run(list, retChan, terminate)
