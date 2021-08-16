@@ -16,13 +16,15 @@ import (
 const (
 	accessKey       = "aws_access_key_id"
 	secretAccessKey = "aws_secret_access_key"
+	sessionToken    = "aws_session_token"
 )
 
 // Credential struct
 type credential struct {
-	name   string
-	key    string
-	secret string
+	name    string
+	key     string
+	secret  string
+	session string
 }
 
 // format makes string for selectable line
@@ -36,6 +38,9 @@ func (c credential) toExport() io.Reader {
 	exports := []string{
 		fmt.Sprintf(`export AWS_ACCESS_KEY_ID="%s"`, c.key),
 		fmt.Sprintf(`export AWS_SECRET_ACCESS_KEY="%s"`, c.secret),
+	}
+	if c.session != "" {
+		exports = append(exports, fmt.Sprintf(`export AWS_SESSION_TOKEN="%s"`, c.session))
 	}
 	return strings.NewReader(strings.Join(exports, "\n") + "\n")
 }
@@ -67,9 +72,10 @@ func main() {
 		}
 		section := accounts.Section(name)
 		creds[name] = credential{
-			name:   name,
-			key:    section.Key(accessKey).Value(),
-			secret: section.Key(secretAccessKey).Value(),
+			name:    name,
+			key:     section.Key(accessKey).Value(),
+			secret:  section.Key(secretAccessKey).Value(),
+			session: section.Key(sessionToken).Value(),
 		}
 	}
 
@@ -93,6 +99,9 @@ func main() {
 	fmt.Fprintf(os.Stderr, "AWS credential set as %s\n", v.name)
 	fmt.Fprintf(os.Stderr, "  AWS_ACCESS_KEY_ID:      %s\n", v.key)
 	fmt.Fprintf(os.Stderr, "  AWS_SECRET_ACCESS_KEY:  %s\n", v.secret)
+	if v.session != "" {
+		fmt.Fprintf(os.Stderr, "  AWS_SESSION_TOKEN:      %s\n", v.session)
+	}
 }
 
 // Select credential from list
